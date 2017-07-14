@@ -34,12 +34,10 @@ class EditContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		seupContact()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -58,8 +56,15 @@ class EditContactViewController: UIViewController {
 
 	fileprivate func seupContact () {
 
-		editableFields = [EditableValue("First name", keyPath: "firstName"),
-		                  EditableValue("Last name", keyPath: "lastName")]
+		editableFields = [EditableValue("First name", keyPath: #keyPath(Contact.firstName)),
+		                  EditableValue("Last name", keyPath: #keyPath(Contact.lastName)),
+		                  EditableValue("Phone number", keyPath: #keyPath(Contact.phoneNumber)),
+		                  EditableValue("Address line 1", keyPath: #keyPath(Contact.addrL1)),
+		                  EditableValue("Address line 2", keyPath: #keyPath(Contact.addrL2)),
+		                  EditableValue("City", keyPath: #keyPath(Contact.city)),
+		                  EditableValue("State", keyPath: #keyPath(Contact.state)),
+		                  EditableValue("Zip code", keyPath: #keyPath(Contact.zipCode)),
+		]
 
 
 	}
@@ -91,7 +96,6 @@ extension EditContactViewController: UITableViewDelegate, UITableViewDataSource 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
 		let cell = tableView.dequeueReusableCell(withIdentifier: "userInfoCell") as! SingleFieldTableViewCell
-
 
 		let field = editableFields[indexPath.row]
 
@@ -129,5 +133,3 @@ extension EditContactViewController: CellWithFieldDelegate {
 
 
 }
-
-

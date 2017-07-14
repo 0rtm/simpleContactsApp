@@ -15,6 +15,12 @@ class ContactInfoViewController: UIViewController {
 
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var LastNameLabel: UILabel!
+	@IBOutlet weak var phoneNumberLabel: UILabel!
+	@IBOutlet weak var addrL1Label: UILabel!
+	@IBOutlet weak var addrL2Label: UILabel!
+	@IBOutlet weak var cityLabel: UILabel!
+	@IBOutlet weak var stateLabel: UILabel!
+	@IBOutlet weak var zipLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +40,13 @@ class ContactInfoViewController: UIViewController {
 
 		nameLabel.text = contact?.firstName
 		LastNameLabel.text = contact?.lastName
+		phoneNumberLabel.text = contact?.phoneNumber
+		addrL1Label.text = contact?.addrL1
+		addrL2Label.text = contact?.addrL2
+		cityLabel.text = contact?.city
+		stateLabel.text = contact?.state
+		zipLabel.text = contact?.zipCode
+
 
 	}
 

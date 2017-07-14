@@ -12,20 +12,27 @@ import RealmSwift
 
 class Contact: Object {
 
-	dynamic var firstName: String?
-	
-	dynamic var lastName: String?
-
 	dynamic var contactID: Int = 0
-	
-	dynamic var phoneNumber: String = ""
 
 	override static func primaryKey() -> String? {
 		return "contactID"
 	}
 
-	//dynamic var address: Address?
+	dynamic var firstName: String?
+	
+	dynamic var lastName: String?
 
+	dynamic var phoneNumber: String = ""
+
+	dynamic var city: String?
+
+	dynamic var addrL1: String?
+
+	dynamic var addrL2: String?
+
+	dynamic var state: String?
+
+	dynamic var zipCode: String?
 
 	convenience init(withContentsOf contact: Contact) {
 
@@ -35,5 +42,11 @@ class Contact: Object {
 		lastName = contact.lastName
 		contactID = contact.contactID
 		phoneNumber = contact.phoneNumber
+		city = contact.city
+		addrL1 = contact.addrL1
+		addrL2 = contact.addrL2
+		state = contact.state
+		zipCode = contact.zipCode
+		
 	}
 }
