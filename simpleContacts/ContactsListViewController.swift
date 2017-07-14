@@ -48,10 +48,10 @@ extension ContactsListViewController: UITableViewDataSource, UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-		let cell = tableView.dequeueReusableCell(withIdentifier: <#T##String#>)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell")!
+
+		return cell
 
 	}
-
-	
 
 }

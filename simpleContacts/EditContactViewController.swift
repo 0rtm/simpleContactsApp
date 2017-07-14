@@ -1,5 +1,5 @@
 //
-//  AddContactViewController.swift
+//  EditContactViewController.swift
 //  simpleContacts
 //
 //  Created by Artem Tselikov on 2017-07-14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddContactViewController: UIViewController {
+class EditContactViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,16 @@ class AddContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+	@IBAction func donePressed(_ sender: Any) {
+
+	}
+
+
+	@IBAction func cancelPressed(_ sender: Any) {
+
+		self.dismiss(animated: true, completion: nil)
+	}
+
 
     /*
     // MARK: - Navigation
@@ -33,3 +43,23 @@ class AddContactViewController: UIViewController {
     */
 
 }
+
+extension EditContactViewController: UITableViewDelegate, UITableViewDataSource {
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 0
+	}
+
+
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+		let cell = tableView.dequeueReusableCell(withIdentifier: "userInfoCell")!
+
+		return cell
+		
+	}
+
+}
+
+
