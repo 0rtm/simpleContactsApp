@@ -10,8 +10,11 @@ import UIKit
 
 class ContactsListViewController: UIViewController {
 
-	
 	@IBOutlet weak var contactsTableView: UITableView!
+
+	var contacts:[Contact] = []
+
+	var selectedContact:Contact?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,17 +26,52 @@ class ContactsListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
+	override func viewWillAppear(_ animated: Bool) {
+
+		super.viewWillAppear(animated)
+		
+		reloadContacts()
+
+	}
+
+
+	fileprivate func reloadContacts() {
+
+
+		contacts = ContactsManager.getAllContacts()!
+
+		self.contactsTableView.reloadData()
+
+	}
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+		if segue.identifier == "showContact" {
+
+			let destVC = segue.destination as! ContactInfoViewController
+
+			destVC.contact = selectedContact
+
+		} else if segue.identifier == "showEdit" {
+
+			// since it root is navigation contoller
+			let destVC = segue.destination.childViewControllers.first as! EditContactViewController
+
+			destVC.contact = selectedContact
+		}
+
     }
-    */
+
+	override func viewWillDisappear(_ animated: Bool) {
+
+		selectedContact = nil
+
+	}
+
 
 }
 
@@ -41,7 +79,7 @@ class ContactsListViewController: UIViewController {
 extension ContactsListViewController: UITableViewDataSource, UITableViewDelegate {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		return contacts.count
 	}
 
 
@@ -50,8 +88,21 @@ extension ContactsListViewController: UITableViewDataSource, UITableViewDelegate
 
 		let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell")!
 
+		let contact = contacts[indexPath.row]
+
+		cell.textLabel?.text = contact.firstName
+
 		return cell
 
+	}
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+		selectedContact = contacts[indexPath.row]
+
+		tableView.deselectRow(at: indexPath, animated: true)
+
+		performSegue(withIdentifier: "showContact", sender: nil)
 	}
 
 }

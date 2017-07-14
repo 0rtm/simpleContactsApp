@@ -1,5 +1,5 @@
 //
-//  ContactModel.swift
+//  Address.swift
 //  simpleContacts
 //
 //  Created by Artem Tselikov on 2017-07-14.
@@ -9,15 +9,8 @@
 import Foundation
 import RealmSwift
 
-class ContactModel: Object {
 
-	dynamic var contactID: String = ""
-
-	dynamic var firstName: String  = ""
-
-	dynamic var lastName: String? = nil
-
-	dynamic var phoneNumber: String = ""
+class Address: Object {
 
 	dynamic var city: String? = nil
 

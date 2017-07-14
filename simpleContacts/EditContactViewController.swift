@@ -8,11 +8,32 @@
 
 import UIKit
 
+class EditableValue {
+
+	dynamic let placeHolder: String
+	dynamic var keyPath: String
+
+	init(_ placeHolder: String, keyPath: String) {
+		self.placeHolder = placeHolder
+		self.keyPath = keyPath
+	}
+
+}
+
+
 class EditContactViewController: UIViewController {
+
+	@IBOutlet weak var tableView: UITableView!
+
+	var contact: Contact?
+
+	var tempContact: Contact?
+
+	var editableFields: [EditableValue] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		seupContact()
         // Do any additional setup after loading the view.
     }
 
@@ -20,9 +41,36 @@ class EditContactViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+
+		super.viewWillAppear(animated)
+
+		if let contact = contact {
+			tempContact = Contact(withContentsOf: contact)
+		} else {
+			tempContact = Contact()
+		}
+
+		self.tableView.reloadData()
+	}
+
+
+	fileprivate func seupContact () {
+
+		editableFields = [EditableValue("First name", keyPath: "firstName"),
+		                  EditableValue("Last name", keyPath: "lastName")]
+
+
+	}
     
 	@IBAction func donePressed(_ sender: Any) {
 
+		if let contact = tempContact {
+			ContactsManager.saveContact(contact: contact)
+		}
+
+		self.dismiss(animated: true, completion: nil)
 	}
 
 
@@ -31,34 +79,54 @@ class EditContactViewController: UIViewController {
 		self.dismiss(animated: true, completion: nil)
 	}
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension EditContactViewController: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 0
+		return editableFields.count
 	}
-
 
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-		let cell = tableView.dequeueReusableCell(withIdentifier: "userInfoCell")!
+		let cell = tableView.dequeueReusableCell(withIdentifier: "userInfoCell") as! SingleFieldTableViewCell
+
+
+		let field = editableFields[indexPath.row]
+
+		cell.textField.placeholder = field.placeHolder
+
+		cell.titleLabel.text = field.placeHolder
+
+		if let value = contact?.value(forKeyPath: field.keyPath) as? String {
+			cell.textField.text = value
+		}
+
+		cell.index = indexPath.row
+
+		cell.delegate = self
 
 		return cell
-		
+
 	}
+
+}
+
+extension EditContactViewController: CellWithFieldDelegate {
+
+	func textUpdated(withText: String?, textFieldIndex: Int) {
+
+		if textFieldIndex > editableFields.count {
+			return
+		}
+
+		let field = editableFields[textFieldIndex]
+
+		tempContact?.setValue(withText, forKey: field.keyPath)
+
+	}
+
 
 }
 

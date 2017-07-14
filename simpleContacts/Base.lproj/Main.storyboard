@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,6 +81,10 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="editingChanged:" destination="lrK-Bn-3mD" eventType="editingChanged" id="W5S-io-PD3"/>
+                                                                <outlet property="delegate" destination="qeL-WP-bvA" id="dka-5N-PHl"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -90,6 +95,10 @@
                                                 <constraint firstItem="ISN-3l-e4t" firstAttribute="centerY" secondItem="o6E-sD-8lv" secondAttribute="centerY" id="EDd-ng-YPt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="IS1-jV-tn1" id="nYM-4h-Ckz"/>
+                                            <outlet property="titleLabel" destination="eYg-oT-ETK" id="rDe-Bj-dHB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -118,10 +127,93 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="YDm-Jg-9Tk" id="8BP-KG-t57"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msf-bb-3yf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2784.8000000000002" y="-1192.3538230884558"/>
+            <point key="canvasLocation" x="3364" y="-1720"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="AjZ-5T-mLu">
+            <objects>
+                <viewController id="Sa8-5k-ZN2" customClass="ContactInfoViewController" customModule="simpleContacts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FMX-t3-eSj"/>
+                        <viewControllerLayoutGuide type="bottom" id="b8B-n7-oJH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bs-6E-HH3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="TdI-N1-WRj">
+                                <rect key="frame" x="26" y="74" width="323" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sq-EV-CnJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcp-4I-CcQ">
+                                        <rect key="frame" x="0.0" y="60" width="323" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tM-XW-UZo">
+                                        <rect key="frame" x="0.0" y="119.5" width="323" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKD-k4-8Sm">
+                                        <rect key="frame" x="0.0" y="179.5" width="323" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qj-qP-aRN">
+                                <rect key="frame" x="16" y="600.5" width="343" height="66.5"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteContactPressed:" destination="Sa8-5k-ZN2" eventType="touchUpInside" id="ly2-uL-TLM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="TdI-N1-WRj" secondAttribute="trailing" constant="10" id="4KR-iL-Csb"/>
+                            <constraint firstItem="b8B-n7-oJH" firstAttribute="top" secondItem="9Qj-qP-aRN" secondAttribute="bottom" id="6DC-jJ-yeM"/>
+                            <constraint firstItem="TdI-N1-WRj" firstAttribute="top" secondItem="FMX-t3-eSj" secondAttribute="bottom" constant="10" id="BFP-u8-YaN"/>
+                            <constraint firstItem="9Qj-qP-aRN" firstAttribute="height" secondItem="8bs-6E-HH3" secondAttribute="height" multiplier="10%" id="UYX-p8-TSg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Qj-qP-aRN" secondAttribute="trailing" id="Y8m-Bj-0CG"/>
+                            <constraint firstItem="9Qj-qP-aRN" firstAttribute="leading" secondItem="8bs-6E-HH3" secondAttribute="leadingMargin" id="Zb0-1a-CY4"/>
+                            <constraint firstItem="TdI-N1-WRj" firstAttribute="height" secondItem="8bs-6E-HH3" secondAttribute="height" multiplier="30%" id="Zee-s9-JYI"/>
+                            <constraint firstItem="TdI-N1-WRj" firstAttribute="leading" secondItem="8bs-6E-HH3" secondAttribute="leadingMargin" constant="10" id="wRf-8S-Wd9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Info" id="wPb-zW-fU0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="qtp-2C-jgz">
+                            <connections>
+                                <segue destination="tgD-y9-61O" kind="show" identifier="showEditFromInfo" id="Q0y-9c-U2c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="LastNameLabel" destination="Gcp-4I-CcQ" id="4k9-I2-OLm"/>
+                        <outlet property="nameLabel" destination="9sq-EV-CnJ" id="rMj-Wf-QtT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gfD-wL-VGh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2740" y="-546"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="tne-QT-ifu">
@@ -174,12 +266,13 @@
                     <navigationItem key="navigationItem" title="Contacts" id="RaZ-uL-7ga">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FJh-7p-Zlf">
                             <connections>
-                                <segue destination="tgD-y9-61O" kind="presentation" id="7KQ-oc-fuU"/>
+                                <segue destination="tgD-y9-61O" kind="presentation" identifier="showEdit" id="7KQ-oc-fuU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contactsTableView" destination="BOZ-dZ-An8" id="F89-AV-ALS"/>
+                        <segue destination="Sa8-5k-ZN2" kind="show" identifier="showContact" id="MJO-07-LCE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -220,7 +313,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QdW-tS-cmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848.8" y="-1191.4542728635683"/>
+            <point key="canvasLocation" x="2183" y="-1505"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q0y-9c-U2c"/>
+    </inferredMetricsTieBreakers>
 </document>
