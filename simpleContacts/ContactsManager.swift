@@ -12,6 +12,8 @@ import RealmSwift
 class ContactsManager {
 
 
+	//Saves a contact, updates if one already exists
+
 	static func saveContact(contact: Contact) {
 
 		print("will save \(contact)")
@@ -33,7 +35,7 @@ class ContactsManager {
 		}
 	}
 
-
+	//returns a last contact if it exists
 	private static func getLastContact() -> Contact? {
 
 		let last = try! Realm().objects(Contact.self).last
@@ -47,8 +49,7 @@ class ContactsManager {
 		return Array(all)
 	}
 
-
-
+	//deletes a contact
 	static func deleteContact(contact: Contact) {
 
 		print("will delete \(contact)")

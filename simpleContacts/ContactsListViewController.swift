@@ -38,7 +38,6 @@ class ContactsListViewController: UIViewController {
 
 	fileprivate func reloadContacts() {
 
-
 		contacts = ContactsManager.getAllContacts()!
 
 		self.contactsTableView.reloadData()

@@ -16,7 +16,6 @@ protocol CellWithFieldDelegate: class {
 }
 
 
-
 class SingleFieldTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var titleLabel: UILabel!
